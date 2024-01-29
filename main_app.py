@@ -76,7 +76,7 @@ def show_student(db_handler):
             else:
                 print_colored_message(f"No student with roll number {roll_num_to_remove}", Colors.RED)
             # Student.db_handler.write_student(Student,student)
-            input("Press anythin to continue...")
+            input("\n\nPress anythin to continue...")
         case "3":
             student = db_handler.get_student()
             roll_num_to_fee = int(input("Enter the roll number to get remaning fee "))
@@ -84,7 +84,7 @@ def show_student(db_handler):
                 print(Student.remaining_payment(Student,roll_num_to_fee))
             else:
                 print_colored_message(f"No student with roll number {roll_num_to_fee}",Colors.RED)
-            input("Press anythin to continue...")
+            input("\n\nPress anythin to continue...")
         case "4":
             student = db_handler.get_student()
             roll_num_to_pay = int(input("Enter the roll number to get pay fee: "))
@@ -95,7 +95,7 @@ def show_student(db_handler):
                 db_handler.write_student(student)
             else:
                 print_colored_message(f"No student with roll number {roll_num_to_pay}",Colors.RED)
-            input("Enter anythin to continue....")
+            input("\n\nEnter anythin to continue....")
             
         case "5":
             roll_number_to_join = int(input("Enter the roll number to get Join a course: "))
@@ -158,7 +158,7 @@ def show_all_course(db_handler):
         if len(key) < 40:
             key += " " * (40-len(key))
         print_colored_message(f"{key} \t:\t {value}", Colors.YELLOW)
-    input("Continue...")
+    input("\n\nContinue...")
 
 def add_academy(all_academy, db_handler):
     # all_academy, _ =  db_handler.get_course()
@@ -179,7 +179,8 @@ def remove_academy(all_academy, db_handler):
         all_academy.pop(remove)
         db_handler.write_courses(all_academy)
     else:
-        print_colored_message(f"Cant find the course name {remove}",Colors.RED)
+        print_colored_message(f"Cant find the Academy named {remove}",Colors.RED)
+    input("/n/nContinue...")
 
 def cources_menu():
     print_colored_message("\n\t\t\t1. Add Academy",Colors.GREEN)
