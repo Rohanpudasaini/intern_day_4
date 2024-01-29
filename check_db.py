@@ -22,7 +22,11 @@ class DatabaseHandler:
                         academy_dict[academy] = {course_name: course_price}
                     else:
                         academy_dict[academy].update({course_name: course_price})
-                    all_academy[course_name] = course_price
+                    if course_name not in all_academy:
+                        all_academy[course_name] = course_price
+                    else:
+                        new_course_name = (f"{course_name} - {academy}")
+                        all_academy[new_course_name] = course_price
         return academy_dict, all_academy
 
     def get_student(self):
