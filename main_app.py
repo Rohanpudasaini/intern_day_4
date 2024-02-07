@@ -47,6 +47,9 @@ def show_student():
         count = len(name)
         if count < 15:
             name += " "*(15-count)
+        if "" in values['Enrolled_list']:
+            values['Enrolled_list'].remove('')
+
         print_colored_message(f"{name} |\t| {key} |\t\t| {values['Enrolled_list']}",Colors.YELLOW)
     choice = student_menu()
     match choice:
@@ -99,6 +102,18 @@ def show_student():
             Student.update_total_price(Student, student)
 
         case "7":
+            print_colored_message("\n\t\tChanging Session",Colors.GREEN)
+            student = check_db.get_student()
+            for key, values in student.items():
+                remaning = Student.remaning_payment(Student, int(key))
+                if  remaning > 0:
+                    print_colored_message(f"\t\tThe Student {values['fname']} have {remaning} fee, please check whith him/her once",Colors.RED)
+                if  remaning < 0:
+                    remaning = remaning * -1
+                    print_colored_message(f"\t\tThe Student {values['fname']} have {remaning} fee over charged, please check whith him/her once",Colors.GREEN)
+            input("\n\nContinue ....")
+        
+        case "8":
             welcome_screen()
         case _:
             show_student()
@@ -163,7 +178,8 @@ def student_menu():
     print_colored_message("\t\t\t4. Pay Remaning Fee",Colors.BLUE)
     print_colored_message("\t\t\t5. Join Cources",Colors.BLUE)
     print_colored_message("\t\t\t6. Opt Cources",Colors.BLUE)
-    print_colored_message("\t\t\t7. Exit",Colors.RED)
+    print_colored_message("\t\t\t7. Move session",Colors.BLUE)
+    print_colored_message("\t\t\t8. Exit",Colors.RED)
     print("\n\n\n\n")
     choice = input("\t\t\t\t\tEnter your choice: ")
     return choice

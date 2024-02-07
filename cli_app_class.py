@@ -49,7 +49,7 @@ class Student:
             total_cost = 0
             for course in values["Enrolled_list"]:
                 # print(all_course_list[course])
-                if course != " ":
+                if course != "":
                     total_cost += int(all_course_list[course])
             student[roll]["Total_cost"] = str(total_cost)
         Student.write_student(Student,student)

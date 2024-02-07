@@ -57,9 +57,12 @@ def make_row_student(student):
         fname = details['fname']
         lname = details['lname']
         total_cost = details['Total_cost']
-        enrolled = ','.join(details['Enrolled_list'])  # Convert list back to comma-separated string
         paid = details['Paid']
+        enrolled = ','.join(details['Enrolled_list'])  # Convert list back to comma-separated string
         row = [fname, lname, str(roll_no), enrolled, total_cost, paid]
+        # if len(enrolled) !=0:
+        #     
+        
         # print(row)
         rows.append(row)
     return(rows)    
